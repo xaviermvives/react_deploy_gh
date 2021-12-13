@@ -1,9 +1,9 @@
 import React from "react";
 
-const Header = () => {
+const Header = ({ title }) => {
   return (
     <header className="Header">
-      <h1>My Blog</h1>
+      <h1>{title}</h1>
     </header>
   );
 };
