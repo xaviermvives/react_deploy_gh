@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+
 * {
   margin: 0;
   padding: 0;
@@ -10,13 +12,11 @@ html {
 
 body {
   min-height: 100vh;
-  display: flex;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: "Open Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: greenyellow;
+  display: flex;
+  background-color: #efefef;
 }
 
 #root {
@@ -38,6 +38,94 @@ body {
   box-shadow: 0px 0px 15px gray;
 }
 
+.Header,
+.Footer {
+  width: 100%;
+  background-color: #66d8f5;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Header h1 {
+  font-size: 1.5rem;
+}
+
+.Header svg {
+  font-size: 2rem;
+}
+
+.Footer {
+  padding: 0.75rem;
+  display: grid;
+  place-content: center;
+}
+
+.Nav {
+  width: 100%;
+  background-color: #333;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.searchForm {
+  width: 80%;
+  padding: 1rem 0 0 0.75rem;
+}
+
+.searchForm input[type="text"] {
+  font-family: "Open Sans", sans-serif;
+  width: 100%;
+  min-height: 48px;
+  font-size: 1rem;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+  outline: none;
+}
+
+.searchForm label {
+  position: absolute;
+  left: -99999px;
+}
+
+.Nav ul {
+  color: #fff;
+  list-style-type: none;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.Nav li {
+  padding: 1rem;
+}
+
+.Nav li:hover,
+.Nav li:focus {
+  padding: 1rem;
+}
+
+.Nav li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.Nav li:hover,
+.Nav li:focus,
+.Nav li:hover a,
+.Nav li:focus a {
+  background-color: #eee;
+  color: #333;
+}
+
+.Nav li:hover a,
+.Nav li:focus a {
+  cursor: pointer;
+}
+
 .Home,
 .NewPost,
 .PostPage,
@@ -47,93 +135,142 @@ body {
   flex-grow: 1;
   padding: 1rem;
   overflow-y: auto;
+  background-color: #fff;
 }
 
-header {
-  background-color: lightcoral;
-  width: 100vw;
-  padding: 1rem;
-  height: 80px;
+.post {
+  margin-top: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid lightgray;
 }
 
-.header-wrapper {
+.Home .post a {
+  text-decoration: none;
+}
+
+.Home .post a,
+.Home .post a:visited {
+  color: #000;
+}
+
+.post:first-child {
+  margin-top: 0;
+}
+
+.post:last-child {
+  border-bottom: none;
+}
+
+.postDate {
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+.postBody {
+  margin: 1rem 0;
+}
+
+.newPostForm {
   display: flex;
-  align-items: center;
-  justify-content: space-around;
-  max-width: 900px;
-  margin: 0 auto;
-  outline: 1px solid black;
+  flex-direction: column;
 }
 
-footer {
-  background-color: lightcoral;
-  width: 100vw;
-  height: 40px;
-  text-align: center;
-  padding-top: 10px;
+.newPostForm label {
+  margin-top: 1rem;
 }
 
-main {
-  max-width: 900px;
-  margin: 0 auto;
-  padding-top: 2rem;
-  height: calc(100vh - 120px);
-}
-
-form {
-  width: 300px;
-  text-align: center;
-}
-
-button {
-  width: 100px;
-  padding: 0.5rem;
+.newPostForm input[type="text"],
+.newPostForm textarea {
+  font-family: "Open Sans", sans-serif;
+  width: 100%;
+  min-height: 48px;
+  font-size: 1rem;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+  margin-right: 0.25rem;
   outline: none;
-  border: none;
-  border-radius: 5px;
 }
 
-form button {
-  background: blueviolet;
+.newPostForm textarea {
+  height: 100px;
+}
+
+.newPostForm button {
+  margin-top: 1rem;
+  height: 48px;
+  min-width: 48px;
+  border-radius: 10px;
+  padding: 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.Missing h2,
+.PostPage h2,
+.Missing p,
+.PostPage p {
+  margin-bottom: 1rem;
+}
+
+.PostPage button {
+  height: 48px;
+  min-width: 48px;
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+  font-size: 1rem;
+  background-color: red;
   color: #fff;
+  cursor: pointer;
 }
 
-form button:hover {
-  background: rgb(81, 29, 129);
-  color: #fff;
+.statusMsg {
+  margin-top: 2rem;
 }
 
-.delete-btn {
-  background: rgb(240, 21, 21);
-  color: #fff;
-  /* margin-top: 1rem; */
+@media only screen and (min-width: 610px) {
+  html {
+    font-size: 22px;
+  }
+
+  .Header h1 {
+    font-size: 2rem;
+  }
+
+  .Nav {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .Nav ul {
+    text-align: right;
+  }
+
+  .Nav li:hover,
+  .Nav li:focus,
+  .Nav li:hover a,
+  .Nav li:focus a {
+    background-color: #eee;
+    color: #333;
+  }
+
+  .searchForm {
+    width: 50%;
+    padding: 0.5rem 0;
+  }
+
+  .searchForm input[type="text"] {
+    margin-left: 0.5rem;
+  }
+
+  .newPostForm textarea {
+    height: 300px;
+  }
 }
 
-.delete-btn:hover {
-  background: rgb(173, 41, 7);
-  color: #fff;
-}
-
-.post-group {
-  display: flex;
-  align-items: center;
-  padding: 1rem;
-}
-
-label {
-  margin: 1rem 1rem 0.5rem 1rem;
-}
-input {
-  height: 20px;
-}
-
-ul li {
-  margin-left: 0.5rem;
-}
-
-article {
-  margin-bottom: 3rem;
-  width: 500px;
-  padding: 1rem;
-  overflow: hidden;
+@media only screen and (min-width: 992px) {
+  .Header svg {
+    font-size: 3rem;
+  }
 }

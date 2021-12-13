@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 //Components:
 import Header from "./components/Header";
+import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import NewPost from "./pages/NewPost";
@@ -39,9 +40,20 @@ function App() {
       body: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis consequatur expedita, assumenda similique non optio! Modi nesciunt excepturi corrupti atque blanditiis quo nobis, non optio quae possimus illum exercitationem ipsa!",
     },
   ]);
+  const [search, setSearch] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
   const [postTitle, setPostTitle] = useState("");
   const [postBody, setPostBody] = useState("");
   const history = useHistory();
+
+  useEffect(() => {
+    const filteredResults = posts.filter(
+      (post) =>
+        post.body.toLowerCase().includes(search.toLowerCase()) ||
+        post.title.toLowerCase().includes(search.toLowerCase())
+    );
+    setSearchResults(filteredResults.reverse());
+  }, [posts, search]);
 
   const handleDelete = (id) => {
     const newPostList = posts.filter((post) => {
@@ -71,9 +83,10 @@ function App() {
   return (
     <div className="App">
       <Header />
+      <Nav search={search} setSearch={setSearch} />
       <Switch>
         <Route exact path="/">
-          <Home posts={posts} />
+          <Home posts={searchResults} />
         </Route>
         <Route exact path="/post">
           <NewPost
