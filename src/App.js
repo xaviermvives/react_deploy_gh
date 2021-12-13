@@ -10,7 +10,7 @@ import PostPage from "./pages/PostPage";
 import About from "./pages/About";
 import Missing from "./pages/Missing";
 
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, useHistory } from "react-router-dom";
 
 function App() {
   const [posts, setPosts] = useState([
@@ -39,6 +39,15 @@ function App() {
       body: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis consequatur expedita, assumenda similique non optio! Modi nesciunt excepturi corrupti atque blanditiis quo nobis, non optio quae possimus illum exercitationem ipsa!",
     },
   ]);
+  const history = useHistory();
+
+  const handleDelete = (id) => {
+    const newPostList = posts.filter((post) => {
+      return post.id !== id;
+    });
+    setPosts(newPostList);
+    history.push("/");
+  };
 
   return (
     <div className="App">
@@ -55,7 +64,7 @@ function App() {
           <EditPost />
         </Route>
         <Route path="/post/:id">
-          <PostPage posts={posts} />
+          <PostPage posts={posts} handleDelete={handleDelete} />
         </Route>
         <Route exact path="/about">
           <About />
