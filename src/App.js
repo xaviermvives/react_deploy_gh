@@ -11,6 +11,7 @@ import About from "./pages/About";
 import Missing from "./pages/Missing";
 
 import { Switch, Route, useHistory } from "react-router-dom";
+import { format } from "date-fns";
 
 function App() {
   const [posts, setPosts] = useState([
@@ -39,6 +40,8 @@ function App() {
       body: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis consequatur expedita, assumenda similique non optio! Modi nesciunt excepturi corrupti atque blanditiis quo nobis, non optio quae possimus illum exercitationem ipsa!",
     },
   ]);
+  const [postTitle, setPostTitle] = useState("");
+  const [postBody, setPostBody] = useState("");
   const history = useHistory();
 
   const handleDelete = (id) => {
@@ -46,6 +49,23 @@ function App() {
       return post.id !== id;
     });
     setPosts(newPostList);
+    history.push("/");
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const id = posts.length ? posts.length + 1 : 1;
+    const datetime = format(new Date(), "MMM dd, yyyy pp");
+    const newPost = {
+      id,
+      datetime,
+      title: postTitle,
+      body: postBody,
+    };
+    const allPosts = [...posts, newPost];
+    setPosts(allPosts);
+    setPostTitle("");
+    setPostBody("");
     history.push("/");
   };
 
@@ -58,7 +78,13 @@ function App() {
           <Home posts={posts} />
         </Route>
         <Route exact path="/post">
-          <NewPost />
+          <NewPost
+            postTitle={postTitle}
+            postBody={postBody}
+            setPostTitle={setPostTitle}
+            setPostBody={setPostBody}
+            handleSubmit={handleSubmit}
+          />
         </Route>
         <Route exact path="/edit">
           <EditPost />

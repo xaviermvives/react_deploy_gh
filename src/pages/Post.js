@@ -6,6 +6,7 @@ const Post = ({ post }) => {
     <article>
       <Link to={`/post/${post.id}`}>
         <h2>{post.title}</h2>
+        <p>Id:{post.id}</p>
         <p>{post.datetime}</p>
       </Link>
       <p>
