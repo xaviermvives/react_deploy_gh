@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 //Components:
 import Header from "./components/Header";
-import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import NewPost from "./pages/NewPost";
@@ -72,7 +71,6 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <Nav />
       <Switch>
         <Route exact path="/">
           <Home posts={posts} />

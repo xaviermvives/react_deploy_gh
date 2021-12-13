@@ -6,14 +6,19 @@ const PostPage = ({ posts, handleDelete }) => {
   const post = posts.find((post) => post.id.toString() === id);
 
   return (
-    <main>
+    <main className="PostPage">
       <article>
         {post && (
           <>
             <h2>{post.title}</h2>
             <p>{post.datetime}</p>
             <p>{post.body}</p>
-            <button onClick={() => handleDelete(post.id)}>Delete Post</button>
+            <button
+              className="delete-btn"
+              onClick={() => handleDelete(post.id)}
+            >
+              Delete Post
+            </button>
           </>
         )}
         {!post && (

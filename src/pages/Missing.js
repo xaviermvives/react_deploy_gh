@@ -1,7 +1,7 @@
 import React from "react";
 
 const Missing = () => {
-  return <div>Page not Found</div>;
+  return <main className="Missing">Page not Found</main>;
 };
 
 export default Missing;
