@@ -49,12 +49,17 @@ function App() {
     setSearchResults(filteredResults.reverse());
   }, [posts, search]);
 
-  const handleDelete = (id) => {
-    const newPostList = posts.filter((post) => {
-      return post.id !== id;
-    });
-    setPosts(newPostList);
-    history.push("/");
+  const handleDelete = async (id) => {
+    try {
+      await api.delete(`/posts/${id}`);
+      const newPostList = posts.filter((post) => {
+        return post.id !== id;
+      });
+      setPosts(newPostList);
+      history.push("/");
+    } catch (err) {
+      console.log(`Error: ${err.message}`);
+    }
   };
 
   const handleSubmit = (e) => {
