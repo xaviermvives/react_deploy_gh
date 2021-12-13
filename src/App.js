@@ -20,6 +20,9 @@ function App() {
   const [searchResults, setSearchResults] = useState([]);
   const [postTitle, setPostTitle] = useState("");
   const [postBody, setPostBody] = useState("");
+  const [editTitle, setEditTitle] = useState("");
+  const [editBody, setEditBody] = useState("");
+
   const history = useHistory();
 
   useEffect(() => {
@@ -39,6 +42,27 @@ function App() {
     };
     fetchPosts();
   }, []);
+
+  const handleEdit = async (id) => {
+    const datetime = format(new Date(), "MMM dd, yyyy pp");
+    const updatedPost = {
+      id,
+      datetime,
+      title: editTitle,
+      body: editBody,
+    };
+    try {
+      const response = await api.put(`/posts/${id}`, updatedPost);
+      setPosts(
+        posts.map((post) => (post.id === id ? { ...response.data } : post))
+      );
+      setEditTitle("");
+      setEditBody("");
+      history.push("/");
+    } catch (err) {
+      console.log(`Error: ${err.message}`);
+    }
+  };
 
   useEffect(() => {
     const filteredResults = posts.filter(
@@ -101,8 +125,15 @@ function App() {
             handleSubmit={handleSubmit}
           />
         </Route>
-        <Route exact path="/edit">
-          <EditPost />
+        <Route path="/edit/:id">
+          <EditPost
+            handleEdit={handleEdit}
+            posts={posts}
+            editTitle={editTitle}
+            editBody={editBody}
+            setEditTitle={setEditTitle}
+            setEditBody={setEditBody}
+          />
         </Route>
         <Route path="/post/:id">
           <PostPage posts={posts} handleDelete={handleDelete} />
