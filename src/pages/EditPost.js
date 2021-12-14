@@ -57,7 +57,7 @@ const EditPost = () => {
               value={editBody}
               onChange={(e) => setEditBody(e.target.value)}
             />
-            <button type="submit" onClick={() => handleEdit(post.id)}>
+            <button type="button" onClick={() => handleEdit(post.id)}>
               Edit post
             </button>
           </form>
