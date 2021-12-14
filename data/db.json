@@ -23,6 +23,18 @@
       "title": "Nou titol a 4th post",
       "datetime": "Dec 05, 2021 5:29:56 PM",
       "body": " Some more testing"
+    },
+    {
+      "id": 5,
+      "datetime": "Dec 14, 2021 10:24:38 AM",
+      "title": "New Post",
+      "body": "Prova"
+    },
+    {
+      "id": 6,
+      "datetime": "Dec 14, 2021 10:36:24 AM",
+      "title": "New Edited",
+      "body": "Prova"
     }
   ]
 }

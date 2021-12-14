@@ -3,13 +3,12 @@ import { Link } from "react-router-dom";
 
 const Post = ({ post }) => {
   return (
-    <article>
+    <article className="post">
       <Link to={`/post/${post.id}`}>
         <h2>{post.title}</h2>
-        <p>Id:{post.id}</p>
-        <p>{post.datetime}</p>
+        <p className="postDate">{post.datetime}</p>
       </Link>
-      <p>
+      <p className="postBody">
         {post.body.length >= 25 ? `${post.body.slice(0, 25)}...` : post.body}
       </p>
     </article>
